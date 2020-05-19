@@ -8,12 +8,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using onboarding.Models;
 
-namespace onboarding.Web.App.Controllers
+namespace onboarding.Controllers
 {
     public class StoreController : Controller
     {
-
-        // GET: Store/StoreListListSales ***This is for the sales Dropdown options
+        // GET: Store/StoreListSales ***This is for the sales Dropdown options
         [HttpGet]
         public JsonResult StoreListSales()
         {
@@ -68,6 +67,7 @@ namespace onboarding.Web.App.Controllers
 
         // POST: Store/CreateStore
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateStore([FromBody] Store store)
         {
             using (var db = new OnboardingContext())
@@ -108,7 +108,7 @@ namespace onboarding.Web.App.Controllers
             }
         }
 
-        // DELETE: Store/DeleteDeleteStore/#
+        // DELETE: Store/DeleteStore/#
         [HttpDelete]
         public ActionResult DeleteStore(int id)
         {
@@ -119,7 +119,7 @@ namespace onboarding.Web.App.Controllers
                     var entity = db.Store.Find(id);
                     db.Store.Remove(entity);
                     db.SaveChanges();
-                    return Ok("Code deleted");
+                    return Ok("Store deleted");
                 }
                 catch
                 {

@@ -1,6 +1,6 @@
 ﻿#body-cover {
     min-height: 50vh;
-    height: auto !important;
+    height: auto;
     padding-top: 0em;
 }
 

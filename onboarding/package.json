@@ -17,12 +17,13 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "bootstrap": "^4.1.1",
-    "react": "^16.8.6",
+    "react": "^16.13.1",
     "react-dnd": "^10.0.2",
     "react-dnd-html5-backend": "^10.0.2",
-    "react-dom": "^16.8.6",
+    "react-dom": "^16.13.1",
     "react-hot-loader": "^4.8.3",
     "react-tag-input": "^6.4.2",
+    "semantic-ui-react": "^0.87.3",
     "webpack": "^4.5.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.2.1",
@@ -35,7 +36,6 @@
     "react-moment": "^0.8.4",
     "react-router-dom": "^4.1.1",
     "semantic-ui-calendar-react": "^0.14.4",
-    "semantic-ui-css": "^2.4.0",
-    "semantic-ui-react": "^0.87.3"
+    "semantic-ui-css": "^2.4.0"
   }
 }

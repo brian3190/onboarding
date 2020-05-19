@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using onboarding.Models;
 
-namespace onboarding.Web.App.Controllers
+namespace onboarding.Controllers
 {
     public class SalesController : Controller
     {
@@ -52,6 +52,7 @@ namespace onboarding.Web.App.Controllers
 
         // POST: Sales/CreateSales
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateSales([FromBody] Sales sales)
         {
             using (var db = new OnboardingContext())
@@ -95,7 +96,7 @@ namespace onboarding.Web.App.Controllers
             }
         }
 
-        // DELETE: Sales/DeleteDeleteSales/#
+        // DELETE: Sales/DeleteSales/#
         [HttpDelete]
         public ActionResult DeleteSales(int id)
         {
@@ -106,7 +107,7 @@ namespace onboarding.Web.App.Controllers
                     var entity = db.Sales.Find(id);
                     db.Sales.Remove(entity);
                     db.SaveChanges();
-                    return Ok("Code deleted");
+                    return Ok("Sales deleted");
                 }
                 catch
                 {

@@ -35,19 +35,64 @@ namespace onboarding.Controllers
         }
 
         //Create customer
-        public JsonResult CreateCustomer(Customer customer)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateCustomer([FromBody] Customer customer)
         {
-            try
+            using (var db = new OnboardingContext())
             {
-                db.Customers.Add(customer);
-                db.SaveChanges();
+                if (ModelState.IsValid)
+                {
+                    db.Customer.Add(customer);
+                    db.SaveChanges();
+                    return StatusCode(StatusCodes.Status201Created);
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest);
+                }
             }
-            catch (Exception e)
+        }
+
+        // PUT: Product/EditCustomer/#
+        [HttpPut]
+        public ActionResult EditCustomer(int id, [FromBody] Customer customer)
+        {
+            using (var db = new OnboardingContext())
             {
-                Console.Write("Exception Occured /n {0}", e.Data);
-                return new JsonResult { Data = "Create Customer Failed", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                if (ModelState.IsValid)
+                {
+                    var entity = db.Customer.Find(id);
+                    entity.Name = customer.Name;
+                    entity.Address = customer.Address;
+                    db.SaveChanges();
+                    return Ok("Record Updated Succesfully...");
+                }
+                else
+                {
+                    return NotFound("No record has been found against this id");
+                }
             }
-            return new JsonResult { Data = "Customer created", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        // DELETE: Customer/DeleteCustomer/#
+        [HttpDelete]
+        public ActionResult DeleteCustomer(int id)
+        {
+            using (var db = new OnboardingContext())
+            {
+                try
+                {
+                    var entity = db.Customer.Find(id);
+                    db.Customer.Remove(entity);
+                    db.SaveChanges();
+                    return Ok("Customer deleted");
+                }
+                catch
+                {
+                    throw;
+                }
+            }
         }
     }
 }

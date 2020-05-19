@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using onboarding.Models;
 
-namespace onboarding.Web.App.Controllers
+namespace onboarding.Controllers
 {
-    public class ProductController : Controller
+    public class ProductsController : Controller
     {
 
         // GET: Product/ProductListSales ***This is for the sales Dropdown options
@@ -79,7 +79,6 @@ namespace onboarding.Web.App.Controllers
                     db.SaveChanges();
                     return StatusCode(StatusCodes.Status201Created);
                 }
-
                 else
                 {
                     return StatusCode(StatusCodes.Status400BadRequest);
@@ -120,7 +119,7 @@ namespace onboarding.Web.App.Controllers
                     var entity = db.Product.Find(id);
                     db.Product.Remove(entity);
                     db.SaveChanges();
-                    return Ok("Code deleted");
+                    return Ok("Product deleted");
                 }
                 catch
                 {
