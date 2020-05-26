@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Home from './Home';
 import Customer from './Customer';
 import Product from './Product';
@@ -12,8 +12,8 @@ import { Divider } from 'semantic-ui-react';
 // and /schedule routes will match any pathname that starts
 // with /roster or /schedule. The / route will only match
 // when the pathname is exactly the string "/"
-const Main = () => (
-    <main className="bodyContainer">
+const Routes = () => (
+    <routes className="bodyContainer">
         <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/customer' component={Customer} />
@@ -22,7 +22,7 @@ const Main = () => (
             <Route path='/sales' component={Sales} />
         </Switch>
         <Divider />
-    </main>
+    </routes>
 )
 
-export default Main;
+export default Routes;

@@ -1,8 +1,8 @@
-﻿import React from 'react';
+﻿import React, { Component } from 'react';
 import { Button, Form, Modal, Icon, ModalActions, Pagination } from 'semantic-ui-react';
 import DropdownItems from './DropdownItems';
 
-export default class Customer extends React.Component {
+export default class Customer extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,7 +28,6 @@ export default class Customer extends React.Component {
 
     componentDidMount() {
         this.loadData();
-
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {

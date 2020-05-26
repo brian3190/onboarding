@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace onboarding.Models
 {
-    public partial class Customer
+    public class Customer
     {
         public Customer()
         {
@@ -15,11 +14,12 @@ namespace onboarding.Models
         [ScaffoldColumn(false)]
         public int Id { get; set; }
 
-        [DisplayName("Customer Name")]
+        [Display(Name = "Customer Name")]
         [Required(ErrorMessage = "Customer Name is required")]
         [StringLength(50)]
         public string Name { get; set; }
 
+        [Display(Name = "Address")]
         [Required(ErrorMessage = "Customer Address is required")]
         [StringLength(250)]
         public string Address { get; set; }

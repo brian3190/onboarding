@@ -12,18 +12,13 @@ namespace onboarding.Controllers
 {
     public class CustomersController : Controller
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        //GET: Customer
+        //GET: Customer/Get
         [HttpGet]
-        public JsonResult GetCustomerData()
+        public JsonResult Get()
         {
             using (var db = new OnboardingContext())
             {
-                var customers = db.Customer.Select(x => new Customer()
+                var customers = db.Customers.Select(x => new Customer()
                 {
                     Id = x.Id,
                     Name = x.Name,
@@ -34,16 +29,17 @@ namespace onboarding.Controllers
             }
         }
 
-        //Create customer
+        //POST: Customers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateCustomer([FromBody] Customer customer)
+        public ActionResult Create([FromBody] Customer customer)
         {
+            //Does not implement catching exception
             using (var db = new OnboardingContext())
             {
                 if (ModelState.IsValid)
                 {
-                    db.Customer.Add(customer);
+                    db.Customers.Add(customer);
                     db.SaveChanges();
                     return StatusCode(StatusCodes.Status201Created);
                 }
@@ -51,18 +47,18 @@ namespace onboarding.Controllers
                 {
                     return StatusCode(StatusCodes.Status400BadRequest);
                 }
-            }
+            }            
         }
 
-        // PUT: Product/EditCustomer/#
+        // PUT: Customers/Edit
         [HttpPut]
-        public ActionResult EditCustomer(int id, [FromBody] Customer customer)
+        public ActionResult Edit(int id, [FromBody] Customer customer)
         {
             using (var db = new OnboardingContext())
             {
                 if (ModelState.IsValid)
                 {
-                    var entity = db.Customer.Find(id);
+                    var entity = db.Customers.Find(id);
                     entity.Name = customer.Name;
                     entity.Address = customer.Address;
                     db.SaveChanges();
@@ -75,16 +71,16 @@ namespace onboarding.Controllers
             }
         }
 
-        // DELETE: Customer/DeleteCustomer/#
+        // DELETE: Customer/Delete
         [HttpDelete]
-        public ActionResult DeleteCustomer(int id)
+        public ActionResult Delete(int id)
         {
             using (var db = new OnboardingContext())
             {
                 try
                 {
-                    var entity = db.Customer.Find(id);
-                    db.Customer.Remove(entity);
+                    var entity = db.Customers.Find(id);
+                    db.Customers.Remove(entity);
                     db.SaveChanges();
                     return Ok("Customer deleted");
                 }

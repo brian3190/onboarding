@@ -18,7 +18,7 @@ namespace onboarding.Controllers
         {
             using (var db = new OnboardingContext())
             {
-                var stores = db.Store.Select(x => new Store()
+                var stores = db.Stores.Select(x => new Store()
                 {
                     Id = x.Id,
                     Name = x.Name,
@@ -40,7 +40,7 @@ namespace onboarding.Controllers
 
             using (var db = new OnboardingContext())
             {
-                var stores = db.Store;
+                var stores = db.Stores;
                 totalRecord = stores.Count();
 
                 if (pageSize > 0)
@@ -74,7 +74,7 @@ namespace onboarding.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    db.Store.Add(store);
+                    db.Stores.Add(store);
                     db.SaveChanges();
                     return StatusCode(StatusCodes.Status201Created);
                 }
@@ -95,7 +95,7 @@ namespace onboarding.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var entity = db.Store.Find(id);
+                    var entity = db.Stores.Find(id);
                     entity.Name = store.Name;
                     entity.Address = store.Address;
                     db.SaveChanges();
@@ -116,8 +116,8 @@ namespace onboarding.Controllers
             {
                 try
                 {
-                    var entity = db.Store.Find(id);
-                    db.Store.Remove(entity);
+                    var entity = db.Stores.Find(id);
+                    db.Stores.Remove(entity);
                     db.SaveChanges();
                     return Ok("Store deleted");
                 }

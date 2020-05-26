@@ -11,16 +11,18 @@
   "author": "Brian Yap",
   "license": "MIT",
   "devDependencies": {
+    "aspnet-webpack": "^3.0.0",
+    "aspnet-webpack-react": "^3.0.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "bootstrap": "^4.1.1",
-    "react": "^16.13.1",
+    "css-loader": "^2.1.1",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "react-dnd": "^10.0.2",
     "react-dnd-html5-backend": "^10.0.2",
-    "react-dom": "^16.13.1",
     "react-hot-loader": "^4.8.3",
     "react-tag-input": "^6.4.2",
     "semantic-ui-react": "^0.87.3",
@@ -32,10 +34,13 @@
   "dependencies": {
     "font-awesome": "^4.7.0",
     "moment": "^2.24.0",
+    "react": "^16.13.1",
     "react-bootstrap": "^0.32.4",
+    "react-dom": "^16.13.1",
     "react-moment": "^0.8.4",
-    "react-router-dom": "^4.1.1",
+    "react-router-dom": "5.0.1",
+    "react-scripts": "3.0.1",
     "semantic-ui-calendar-react": "^0.14.4",
-    "semantic-ui-css": "^2.4.0"
+    "semantic-ui-css": "^2.4.1"
   }
 }

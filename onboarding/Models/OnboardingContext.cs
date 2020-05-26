@@ -1,25 +1,22 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 
 namespace onboarding.Models
 {
-    public partial class OnboardingContext : DbContext
+    public class OnboardingContext : DbContext
     {
         public OnboardingContext()
-        {
-        }
+        { }
 
         public OnboardingContext(DbContextOptions<OnboardingContext> options)
-            : base(options)
-        {
-        }
+            : base()
+        { }
 
-        public virtual DbSet<Customer> Customer { get; set; }
-        public virtual DbSet<Product> Product { get; set; }
-        public virtual DbSet<Sales> Sales { get; set; }
-        public virtual DbSet<Store> Store { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Sales> Sales { get; set; }
+        public DbSet<Store> Stores { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -13,13 +13,13 @@ namespace onboarding.Controllers
     public class ProductsController : Controller
     {
 
-        // GET: Product/ProductListSales ***This is for the sales Dropdown options
+        // GET: Product/ProductList
         [HttpGet]
-        public JsonResult ProductListSales()
+        public JsonResult ProductsList()
         {
             using (var db = new OnboardingContext())
             {
-                var products = db.Product.Select(x => new Product()
+                var products = db.Products.Select(x => new Product()
                 {
                     Id = x.Id,
                     Name = x.Name,
@@ -40,7 +40,7 @@ namespace onboarding.Controllers
 
             using (var db = new OnboardingContext())
             {
-                var products = db.Product;
+                var products = db.Products;
                 totalRecord = products.Count();
 
                 if (pageSize > 0)
@@ -75,7 +75,7 @@ namespace onboarding.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    db.Product.Add(product);
+                    db.Products.Add(product);
                     db.SaveChanges();
                     return StatusCode(StatusCodes.Status201Created);
                 }
@@ -95,7 +95,7 @@ namespace onboarding.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var entity = db.Product.Find(id);
+                    var entity = db.Products.Find(id);
                     entity.Name = product.Name;
                     entity.Price = product.Price;
                     db.SaveChanges();
@@ -116,8 +116,8 @@ namespace onboarding.Controllers
             {
                 try
                 {
-                    var entity = db.Product.Find(id);
-                    db.Product.Remove(entity);
+                    var entity = db.Products.Find(id);
+                    db.Products.Remove(entity);
                     db.SaveChanges();
                     return Ok("Product deleted");
                 }

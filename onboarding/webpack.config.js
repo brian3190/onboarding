@@ -1,9 +1,11 @@
 ﻿const env = process.env.NODE_ENV;
 const path = require('path');
+const webpack = require('webpack');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     mode: 'development',
-    context: __dirname,
     entry: {
         app: './Scripts/react/index.js' 
     },
@@ -19,6 +21,10 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.(s ?)css$ /,
+                loader: 'style-loader!css-loader!sass-loader'
+            },
             {
                 test: /\.(js|jsx)$/,
                 exclude: /(node_modules)/,
@@ -38,7 +44,31 @@ module.exports = {
             {
                 test: /\.html$/,
                 use: { loader: "html-loader" }
+            },
+            {
+                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                loader: 'url-loader?limit=100000'
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            BLOG_API: JSON.stringify('http://localhost:58830')
+        }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
+            Popper: ['popper.js', 'default']
+        }),
+        new ExtractTextPlugin(
+            { filename: 'style.bundle.css', disable: false, allChunks: true }
+        ),
+        new HtmlWebPackPlugin({
+            inject: false,
+            hash: true,
+            template: "./Views/Home/index.cshtml",
+            filename: "index.html"
+        })
+    ]
 };

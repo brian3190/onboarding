@@ -1,12 +1,14 @@
 ﻿import React, { Component } from 'react';
-import Header from './Header';
-import Main from './Main';
+import NavMenu from './NavMenu';
+import Routes from './Routes';
 import Footer from './Footer';
 
 const App = () => (
     <div>
-        <Header />
-        <Main />
+        <NavMenu />
+        <Routes>
+            {this.props.children}
+        </Routes>
         <Footer />
     </div>
 )

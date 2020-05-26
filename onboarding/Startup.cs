@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.SpaServices.Webpack;
+using Microsoft.EntityFrameworkCore;
+using onboarding.Models;
 
 namespace onboarding
 {
@@ -20,44 +20,41 @@ namespace onboarding
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddMvc();
+            services.AddDbContext<OnboardingContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DB_Task1")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
+                //app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                {
+                    HotModuleReplacement = true,
+                    ReactHotModuleReplacement = true,
+                    HotModuleReplacementEndpoint = "/dist/__webpack_hmr"
+                });
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+                app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseSpaStaticFiles();
 
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
+            app.UseMvc(routes =>
             {
-                endpoints.MapControllerRoute(
+                routes.MapRoute(
                     name: "default",
-                    pattern: "{controller=}/{action=Index}/{id?}");
-            });
+                    template: "{controller=Home}/{action=Index}/{id?}");
 
-            app.UseSpa(spa =>
-            {
-                spa.Options.SourcePath = "ClientApp";
-
-                if (env.IsDevelopment())
-                {
-                    spa.UseReactDevelopmentServer(npmScript: "start");
-                }
+                routes.MapSpaFallbackRoute(
+                    name: "spa-fallback",
+                    defaults: new { controller = "Home", action = "Index" });
             });
         }
     }
