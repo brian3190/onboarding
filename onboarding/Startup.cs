@@ -21,7 +21,7 @@ namespace onboarding
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<OnboardingContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DB_Task1")));
+            services.AddDbContext<OnboardingContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DB_Task")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -4,11 +4,10 @@ import { NavLink } from 'react-router-dom';
 
 const Home = () => (
     <div className='container-fluid' id="body-cover">
-    <div className="homeDiv">
+        <div className="homeDiv">
             <Header>
               Onboarding Task 1
             </Header>
-                
         </div>
     </div>
 

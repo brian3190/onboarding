@@ -1,8 +1,8 @@
 ﻿const env = process.env.NODE_ENV;
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -22,8 +22,9 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(s ?)css$ /,
-                loader: 'style-loader!css-loader!sass-loader'
+                //unused?
+                test: /\.css$ /,
+                use: [ 'style-loader','css- loader' ]
             },
             {
                 test: /\.(js|jsx)$/,
@@ -43,10 +44,10 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-                use: { loader: "html-loader" }
+                use: { loader: 'html-loader' }
             },
             {
-                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                test: /\.(jpg|png|woff|woff2|eot|ttf|svg)$/,
                 loader: 'url-loader?limit=100000'
             }
         ]
@@ -67,8 +68,8 @@ module.exports = {
         new HtmlWebPackPlugin({
             inject: false,
             hash: true,
-            template: "./Views/Home/index.cshtml",
-            filename: "index.html"
+            template: './Views/Home/index.cshtml',
+            filename: 'index.html'
         })
     ]
 };

@@ -6,9 +6,7 @@ import Footer from './Footer';
 const App = () => (
     <div>
         <NavMenu />
-        <Routes>
-            {this.props.children}
-        </Routes>
+        <Routes />
         <Footer />
     </div>
 )

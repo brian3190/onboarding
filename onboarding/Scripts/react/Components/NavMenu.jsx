@@ -6,8 +6,6 @@ import { NavLink } from 'react-router-dom';
 // The Header creates links that can be used to navigate
 // between routes.
 export default class NavMenu extends Component {
-
-
     render() {
         return (
             <Segment inverted>

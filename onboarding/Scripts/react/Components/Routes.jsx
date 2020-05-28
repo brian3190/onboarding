@@ -13,7 +13,7 @@ import { Divider } from 'semantic-ui-react';
 // with /roster or /schedule. The / route will only match
 // when the pathname is exactly the string "/"
 const Routes = () => (
-    <routes className="bodyContainer">
+    <Routes className="bodyContainer">
         <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/customer' component={Customer} />
@@ -22,7 +22,7 @@ const Routes = () => (
             <Route path='/sales' component={Sales} />
         </Switch>
         <Divider />
-    </routes>
+    </Routes>
 )
 
 export default Routes;
