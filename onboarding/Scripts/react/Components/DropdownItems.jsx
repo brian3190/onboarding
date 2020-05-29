@@ -46,9 +46,6 @@ export default class DropdownItems extends React.Component {
                     options={itemsPerPage}
                     onChange={this.props.handleClick}
                 />&emsp;
-        <Label as='a' color='teal' tag>
-                    Items per page
-        </Label>
             </div>
         );
     }

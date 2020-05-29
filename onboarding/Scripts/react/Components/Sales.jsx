@@ -354,8 +354,6 @@ export default class Sales extends React.Component {
                         </ModalActions>
                     </Modal>
 
-                    <DropdownItems handleClick={(event, { name, value }) => this.setState({ dropdownValue: value })} />
-
                     <table className="ui fixed celled striped table">
                         <thead>
                             <tr>
@@ -399,6 +397,8 @@ export default class Sales extends React.Component {
                             {tableData}
                         </tbody>
                     </table>
+
+                    <DropdownItems handleClick={(event, { name, value }) => this.setState({ dropdownValue: value })} />
                 </div>
             </React.Fragment>
         )

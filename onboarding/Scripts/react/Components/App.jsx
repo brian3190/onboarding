@@ -1,12 +1,12 @@
 ﻿import React, { Component } from 'react';
-import NavMenu from './NavMenu';
-import Routes from './Routes';
+import Header from './Header';
+import Main from './Main';
 import Footer from './Footer';
 
 const App = () => (
     <div>
-        <NavMenu />
-        <Routes />
+        <Header />
+        <Main />
         <Footer />
     </div>
 )

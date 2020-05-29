@@ -1,8 +1,8 @@
-﻿import React, { Component } from 'react';
+﻿import React from 'react';
 import { Button, Form, Modal, Icon, ModalActions, Pagination } from 'semantic-ui-react';
 import DropdownItems from './DropdownItems';
 
-export default class Customer extends Component {
+export default class Customer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -199,7 +199,7 @@ export default class Customer extends Component {
                         </ModalActions>
                     </Modal>
 
-                    <DropdownItems handleClick={(event, { name, value }) => this.setState({ dropdownValue: value })} />
+                    
 
                     <table className="ui fixed celled striped table">
                         <thead>
@@ -228,9 +228,10 @@ export default class Customer extends Component {
                             {tableData}
                         </tbody>
                     </table>
+
+                    <DropdownItems handleClick={(event, { name, value }) => this.setState({ dropdownValue: value })} />
                 </div>
             </React.Fragment >
-
         )
     }
 }

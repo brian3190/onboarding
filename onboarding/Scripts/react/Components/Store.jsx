@@ -198,9 +198,6 @@ export default class Store extends React.Component {
                         </ModalActions>
                     </Modal>
 
-                    <DropdownItems handleClick={(event, { name, value }) => this.setState({ dropdownValue: value })} />
-
-
                     <table className="ui fixed celled striped table">
                         <thead>
                             <tr>
@@ -228,6 +225,8 @@ export default class Store extends React.Component {
                             {tableData}
                         </tbody>
                     </table>
+
+                    <DropdownItems handleClick={(event, { name, value }) => this.setState({ dropdownValue: value })} />
                 </div>
             </React.Fragment >
         )
